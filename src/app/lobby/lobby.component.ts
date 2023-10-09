@@ -77,7 +77,7 @@ checkButtonStates():void{
   
     get emailLink(): string {
       const subject = 'Lust auf ne Wortkette?';
-      const body = 'https://wortkettebff.azurewebsites.net/#game/'+this.game.id+'/'+this.game.opponentPlayerId;
+      const body = 'https://happy-field-0b4ed2b03.3.azurestaticapps.net/#game/'+this.game.id+'/'+this.game.opponentPlayerId;
   
       const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       return mailtoUrl;
