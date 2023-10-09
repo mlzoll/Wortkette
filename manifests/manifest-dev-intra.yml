@@ -1,0 +1,11 @@
+applications:
+- name: wortkette
+  instances: 1
+  memory: 128M
+  disk_quota: 128M
+  path: ../dist/wortkette
+  buildpacks:
+  - staticfile_buildpack
+  routes:
+  - route: "wortkette.pcfres-intra.dev.datev.de"
+  - route: "wortkette.pcfopen-intra.dev.datev.de"

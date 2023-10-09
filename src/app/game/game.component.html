@@ -1,0 +1,52 @@
+
+<mat-card [ngStyle]="{'background-color': itIsMyTurn ? 'white' : 'lightgray'}">
+  <mat-card-header>
+    <mat-card-title>Word - Chain - Game</mat-card-title>
+    <mat-card-subtitle>Game</mat-card-subtitle>
+   
+  </mat-card-header>
+
+  <mat-card-content style="margin-top: 40px;">
+      <div *ngIf="isMessageVisible">
+        <p class="red-text">{{ message }}</p>
+      </div>
+      <p>
+        <span *ngFor="let item of game.itemChain">{{ item }}&nbsp;&gt;&nbsp;</span>
+      </p>
+      <div *ngIf="game" style="display: block; white-space:pre">    
+          <p>Thema:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{game.subject }}</p>       
+          <p>Letztes Wort:&nbsp;{{lastItem}}</p>
+          <p>Neues Wort:&nbsp;&nbsp;&nbsp;{{game.pendingItem}}</p>      
+          <mat-form-field *ngIf="itIsMyTurn">
+            <mat-label>Neues Wort:</mat-label>
+            <input matInput [disabled]="itIsJudgeState" [(ngModel)]="game.pendingItem" placeholder="Neues Wort">
+          </mat-form-field>
+        </div> 
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div *ngIf="itIsMyTurn">
+      
+      <button mat-stroked-button style="background-color: rgb(184, 240, 184); margin-left: 5px; " [disabled]="!itIsJudgeState" *ngIf="itIsJudgeState" (click)="onAcceptWord()">&#128076; OK</button>
+      <button mat-stroked-button style="background-color:rgb(250, 228, 210); margin-left: 30px; " [disabled]="!itIsJudgeState" *ngIf="itIsJudgeState" (click)="onRejectWord()">&#128078; Nee nee</button>
+      <button mat-stroked-button [disabled]="itIsJudgeState" *ngIf="!itIsJudgeState" color="primary" style="margin-left: 30px; " (click)="onSendWord()">Wort
+        senden</button>
+    </div>
+    <div >
+      <button  *ngIf="isGameOngoing" mat-stroked-button color="primary"  (click)="onEndGame()">Spiel beenden</button>
+    </div>
+  </mat-card-actions>
+
+</mat-card>
+
+
+<hr />
+
+
+<div style="background-color: azure;">
+  <p>myId: {{ game.myPlayerId }}</p>
+  <p>Judge: {{ itIsJudgeState }}</p>
+  <ul>
+    <li *ngFor="let logItem of loginfo">{{ logItem }}</li>
+  </ul>
+</div>

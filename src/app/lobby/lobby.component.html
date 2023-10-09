@@ -1,0 +1,36 @@
+<mat-card class="lobby-card">
+  <mat-card-header>
+    <mat-card-title>Word - Chain - Game</mat-card-title>
+    <mat-card-subtitle>Lobby</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content style="margin-top: 40px;">
+
+    <mat-form-field>
+      <mat-label>Thema:</mat-label>
+      <input matInput type="text" [readonly]="!isStartGameButtonVisible" [(ngModel)]="game.subject" placeholder="Thema">
+    </mat-form-field>  
+
+      <mat-form-field>
+        <mat-label>Startwort:</mat-label>
+        <input matInput type="text" [readonly]="!isStartGameButtonVisible" [(ngModel)]="game.pendingItem"
+          placeholder="Startwort">
+      </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div >
+      <button style="margin-left: 5px;"  mat-stroked-button color="primary" [disabled]="!isStartGameButtonVisible" *ngIf="isStartGameButtonVisible"
+        (click)="onStartGame()">Spiel anlegen</button>
+    </div>
+    <div>
+      <a style="margin-left: 5px;"  *ngIf="isSendEmailButtonVisible" [href]="emailLink">E-Mail senden</a>
+    </div>
+    <div>
+      <button style="margin-left: 30px;"  mat-stroked-button color="primary" [disabled]="!isJoinGameButtonVisible" *ngIf="isJoinGameButtonVisible"
+        (click)="onJoinGame()">Spiel beitreten</button>
+    </div>
+  </mat-card-actions>
+</mat-card>
+<!-- </mat-card-content>
+> -->
